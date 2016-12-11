@@ -106,7 +106,7 @@ class LoginTest(BaseCase):
             elem.send_keys("ole")
 
         # uncomment to test languages other than English
-        # dropdown = Select(driver_find_element_by_name("selectLanguage"))
+        # dropdown = Select(driver.find_element_by_name("selectLanguage"))
         # dropdown.select_by_value("Spanish")
 
         submit = driver.find_element_by_id("formButton")

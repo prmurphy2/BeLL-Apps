@@ -11,6 +11,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 
+from time import sleep
+
 @on_platforms(browsers)
 class LanguageTest(BaseCase):
 
@@ -23,16 +25,13 @@ class LanguageTest(BaseCase):
         languages = ["Arabic", "English", "Spanish", "Urdu"]
         logins = ["دخول", "Login", "Iniciar sesión", "لاگ ان"]
         for i in range(len(languages)):
-            dropdown = Select(driver_find_element_by_id("onLoginLanguage")
+            dropdown = Select(driver.find_element_by_id("onLoginLanguage"))
             dropdown.select_by_value(languages[i])
-            dropdown.click()
-        
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, logins[i])))
-            try:
-                driver.find_element_by_name(logins[i])
-                actual = logins[i]
-            except:
-                actual = "Not Found"
+            
+            sleep(10)
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "c50_login")))
+            
+            actual = driver.find_element_by_xpath('//label[@for="c50_login"]').text
             expected = logins[i]
             self.assertEqual(actual, expected)
         
