@@ -28,7 +28,7 @@ class LanguageTest(BaseCase):
             dropdown = Select(driver.find_element_by_id("onLoginLanguage"))
             dropdown.select_by_value(languages[i])
             
-            sleep(10)
+            sleep(15)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "c50_login")))
             
             actual = driver.find_element_by_xpath('//label[@for="c50_login"]').text

@@ -14,6 +14,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 
+from time import sleep
+
 @on_platforms(browsers)
 class LoginTest(BaseCase):
                          
@@ -111,6 +113,7 @@ class LoginTest(BaseCase):
 
         submit = driver.find_element_by_id("formButton")
         submit.click()
+        sleep(5)
         
         # if configuration was successful, accept confirmation alert
         actual = Alert(driver).text
