@@ -1,6 +1,8 @@
 import unittest
 import bell
 import time
+import random
+import string
 
 from base_case import is_travis
 from base_case import on_platforms
@@ -37,6 +39,7 @@ class LoginTest(BaseCase):
             self.fill_out_new_resources_form()
             self.check_for_resource()
             self.click_request_resource()
+            self.type_in_resource_request()
             
                         
 
@@ -106,7 +109,7 @@ class LoginTest(BaseCase):
             inputElementList[x].send_keys(Keys.RETURN)
         inputElement = driver.find_element_by_name('save')
         inputElement.click()
-        time.sleep(3)
+        time.sleep(5)
 
     def check_for_resource(self):
         driver = self.driver
@@ -119,7 +122,17 @@ class LoginTest(BaseCase):
         driver = self.driver
         login_form = driver.find_element_by_id('requestResource')
         login_form.click()
-        
+
+    def type_in_resource_request(self):
+        driver = self.driver
+        inputElement = driver.find_element_by_name('request')
+        inputElement.send_keys('test')
+        inputElement = driver.find_element_by_name
+        # I would like to make a random string with something like this: p = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(6))
+        # then check for that string in the requested resources page
+    
+    
+    # This isnt used, I jut left it here to use as a reference.
     def configuration_test(self):
         """ NoneType -> NoneType
         
@@ -157,3 +170,4 @@ class LoginTest(BaseCase):
 
 if __name__ == "__main__":
     unittest.main()
+
